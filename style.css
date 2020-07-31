@@ -1,0 +1,291 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* * = 모든 요소 *::~~ 모든 가상 요소 */
+/* 필연적으로 브라우저의 차이로 발생하는 차이가 있을 수있다(폰트 크기 등) */
+/* 사용자가 불편하지 않을 정도로 차이를 없애는게 css reset으로 지향하는 바임 */
+html {
+  font-size: 10px;
+}
+body {
+  min-width: 1060px;
+  font-size: 1.8rem; /*html의 10px선언을 기준으로 rem이용*/
+  line-height: 1.6;
+  font-family: Roboto, Avenir, sans-serif;
+}
+a {
+  text-decoration: none;
+}
+/* CTA */
+.cta {
+  color: white;
+  display: block;
+  font-weight: 400;
+  border-radius: 8px;
+  background: #44b78b;
+} /* 버튼모양 */
+.cta:hover {
+  background: #51be95;
+} /* 버튼 마우스 오버시 색상변경 */
+
+/* ---------------- HEADER --------------*/
+.header {
+  background: #0c4b33;
+  height: 72px;
+  padding: 15px 0 4px;
+}
+.container,
+.container-float {
+  max-width: 1400px;
+  margin: 0 auto; /* top,bottom에 0, right,left에 auto */
+  padding: 0 20px; /*컨테이너 크기가 줄었을때도 여백이 남아 있어 보기 좋음 */
+  position: relative; /* logo를 그자리에 고정 -> position: absolute 사용하여야하는데,  로고가 기준하는 부모속성이 .container이므로 position:relative 부여함 */
+}
+.container-float::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.logo {
+  margin: 0;
+  padding-left: inherit; /*  logo가 position: absolute 적용이 되어 있어서 부모인 container의 padding을 제대로 반영하지 못하는데요. 그래서 저는 logo에 padding-left 속성을 inherit으로 하여 container의 padding 속성을 상속받도록 했습니다. */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.logo-desc {
+  float: right;
+  width: 200px;
+  display: block;
+  font-size: 1.3rem;
+  color: #44b78b;
+  font-weight: 700;
+  width: auto;
+  margin: 0 0 0 10px;
+}
+.nav {
+  text-align: right;
+}
+.list {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0;
+}
+.list-item {
+  display: inline-block; /* li요소를 일렬로 나란히 배치하고, 각각의 크기를 변경할 수 있는 상태로 둠 */
+  font-size: 1.3rem;
+}
+.list-item > a {
+  color: white;
+  display: block;
+  padding: 10px; /* 넉넉한 여백으로 편하게 선택 */
+  text-transform: uppercase; /*대문자로 변경*/
+}
+.list-item > a:hover {
+  color: #c9f0dd;
+}
+
+/* ---------------- MAIN --------------*/
+.main {
+  background: white;
+}
+.hero-section {
+  text-align: center;
+  padding: 50px 0;
+  border-bottom: 1px solid #cfe3dc; /* 보더 아래줄 표시 (굵기, 선모양, 색상 순) */
+}
+.intro-desc {
+  width: 700px;
+  font-weight: 300;
+  font-size: 3.6rem;
+  margin: 40px auto 50px;
+  line-height: 1.3; /* 줄간격 */
+}
+
+.hero-cta {
+  width: 300px;
+  margin: 0 auto 60px;
+  padding: 20px 50px;
+}
+.main-content {
+  float: left;
+  width: 70%;
+}
+.main-title {
+  font-weight: 400;
+  margin: 40 0 20 0;
+  font-size: 3.2rem;
+  letter-spacing: -1px;
+}
+.main-desc {
+  margin: 0;
+}
+.mailing-layout {
+  padding-top: 10px;
+}
+.mailing-layout::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.mailing {
+  float: left;
+  width: 48%;
+}
+.mailing:first-child {
+  /* 동일한 클래스 값인 mailing의 첫번째 요소만 수정하고싶으면 가상 클래스 :first-child 이용 */
+  margin-right: 4%;
+}
+.mailing-form {
+  margin: 10px 0 30px;
+  position: relative; /* 버튼의 포지션 부모속성 */
+}
+.mailing-form > label {
+  /*
+  display : none;
+  visibility : hidden; 
+  */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: grey;
+  overflow: hidden; /* 넘치면 숨김 */
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  /* 웹 접근성을 높이기 위해 margin, clip 등 사용 */
+}
+input[type="email"] {
+  /*속성 선택자 이용시 띄워쓰기 x */
+  width: 100%;
+  border: 1px solid #cfe3dc;
+  border-radius: 4px;
+  height: 5rem;
+}
+.mailing-form-btn {
+  position: absolute;
+  top: 30%;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  color: #44b78b;
+}
+.mailing-desc {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+.mailing-title > a,
+.mailing-desc > a {
+  color: #20aa76;
+}
+.mailing-title > a:hover,
+.mailing-desc > a:hover {
+  color: #25c488;
+}
+
+/* ---------------- SIDE-CONTENT --------------*/
+.side-content {
+  float: right;
+  width: 30%;
+  padding: 0 0 30px 20px;
+  border-left: 1px solid #cfe3dc;
+}
+.container-side-cta {
+  text-align: center;
+}
+.side-cta {
+  width: 330px;
+  padding: 16px 24px;
+  margin: 40px auto 0;
+}
+/* a요소의 속성을 side content 전체에서 선언했을때
+구체성점수를 높여서 적용하는 방법(난 따로 선언해서 x)
+.cta.side-cta:hover {
+  color: red;
+} */
+.side-cta em {
+  font-style: normal;
+  color: #c9f0dd;
+}
+.more {
+  display: block;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #20aa76;
+}
+.infos-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  border-bottom: 1px solid #cfe3dc;
+  margin: 3.5rem 0 0 0;
+  padding-bottom: 1rem;
+}
+.news-article {
+  padding: 20px 0;
+}
+.news-title {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.news-desc {
+  font-size: 1.5rem;
+}
+.news-meta {
+  margin: 0;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #859d94;
+}
+.list-communities {
+  padding: 20px 0;
+  margin: 0;
+}
+.community-title {
+  font-size: 1.4rem;
+}
+.community-title:nth-child(n + 2) {
+  margin-top: 14px;
+}
+.community-desc {
+  margin: 10px 0 0 0;
+  font-size: 1.4rem;
+  color: #859d94;
+}
+
+.news-title > a,
+.community-title > a {
+  color: #20aa76;
+}
+.news-title > a:hover,
+.community-title > a:hover {
+  color: #25c488;
+}
+.more::after {
+  margin: 5px;
+  content: " >";
+}
+/* CONTENT-INFO */
+.content-info {
+  background: #0c4b33;
+  padding: 10px 0 30px;
+}
+.links {
+  background: lightgreen;
+}
+.footer {
+  clear: both; /*풋터가 메인과 사이드의 영향을 받지 않고 독립적으로 flow시작 */
+  margin: 10px;
+}
+.copyright {
+  font-size: 1.2rem;
+  color: #2b8c67;
+}
+.copyright > a {
+  text-decoration: underline;
+  color: inherit;
+}
